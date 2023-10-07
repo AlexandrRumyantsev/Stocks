@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CleanArchitectureShowcase</string>
+    <string name="search_input_text">Find company or ticker</string>
 </resources>

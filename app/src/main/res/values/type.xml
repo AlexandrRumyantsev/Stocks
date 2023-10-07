@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="text_primary_menu_black">
+        <item name="android:textSize">28sp</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+    <style name="text_primary_menu_gray">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+    <style name="text_secondary_menu_black">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+    <style name="text_secondary_menu_gray">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+    <style name="text_subtitle_black">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+    <style name="text_subtitle_green">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/green_stock</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+    <style name="text_subtitle_red">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/red_stock</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+    <style name="text_search_input">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+</resources>
