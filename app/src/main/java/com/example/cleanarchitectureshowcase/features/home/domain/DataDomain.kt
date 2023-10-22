@@ -1,12 +1,15 @@
 package com.example.cleanarchitectureshowcase.features.home.domain
 
-import com.example.cleanarchitectureshowcase.features.home.presentation.DataUI
+import com.example.cleanarchitectureshowcase.features.home.presentation.SnippetData
 
 data class DataDomain(
-    val title: String,
-    val subTitle: String,
-    val description: String,
-    val importantDataForDomain: String
+    val symbol: String,
+    val companyName: String,
+    val price: Float,
+    val changes: Float,
+    val image: String,
 ) {
-    fun toUI() = DataUI(title, subTitle, description)
+    fun toUI() : SnippetData{
+        return SnippetData(symbol, companyName, "SHARE_COST", "DIFFERENCE", image)
+    }
 }

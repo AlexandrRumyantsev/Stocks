@@ -6,15 +6,7 @@ class DataRepositoryImpl(
     private val api: ServerDataApi
 ): DataRepository {
 
-    override suspend fun getData() : DataDTO {
-        // условный вызов вашей апишки
-        // используйте апи здесь
-        return DataDTO(
-            title = "title",
-            subTitle = "subtitle",
-            description = "description",
-            someDumpInfo = "DumpiDump",
-            importantDataForDomain = "topSecret"
-        )
+    override suspend fun getData(symbol: String): StockDTO {
+        return api.getStockDTO(symbol)
     }
 }

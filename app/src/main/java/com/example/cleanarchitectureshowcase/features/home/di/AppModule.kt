@@ -10,17 +10,18 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Provides
     @Singleton
     fun provideServerDataApi(): ServerDataApi {
         return Retrofit.Builder()
-            .baseUrl("https://blabla")
+            .baseUrl(ServerDataApi.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ServerDataApi::class.java)
     }

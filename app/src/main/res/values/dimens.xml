@@ -4,4 +4,5 @@
     <dimen name="search_input_radius">24dp</dimen>
     <dimen name="snippet_padding">8dp</dimen>
     <dimen name="small_snippet_padding">4dp</dimen>
+    <dimen name="main_content_padding">16dp</dimen>
 </resources>

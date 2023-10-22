@@ -13,13 +13,4 @@ class MainViewModel @Inject constructor(
     private val getMockDataUsecase: GetMockDataUsecase
 ): ViewModel() {
 
-    private val _state = MutableStateFlow<DataUI?>(null)
-    val state = _state
-
-    fun someProccess() {
-        viewModelScope.launch {
-            val result = getMockDataUsecase.invoke("Params")
-            state.value = result
-        }
-    }
 }
