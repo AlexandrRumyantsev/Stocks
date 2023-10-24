@@ -5,11 +5,11 @@ import com.example.cleanarchitectureshowcase.features.home.presentation.SnippetD
 data class DataDomain(
     val symbol: String,
     val companyName: String,
-    val price: Float,
-    val changes: Float,
+    val price: Double,
+    val changes: Double,
     val image: String,
 ) {
     fun toUI() : SnippetData{
-        return SnippetData(symbol, companyName, "SHARE_COST", "DIFFERENCE", image)
+        return SnippetData(symbol, companyName, price, changes, changes/(price-changes), image)
     }
 }

@@ -5,6 +5,8 @@
     android:id="@+id/mainSnippet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/small_snippet_margin"
+    app:cardBackgroundColor="@color/card_bg"
     app:cardCornerRadius="@dimen/card_corner_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,11 +15,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="@dimen/snippet_padding"
-            android:layout_marginTop="@dimen/snippet_padding"
-            android:layout_marginBottom="@dimen/snippet_padding"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="@dimen/snippet_margin"
+            android:layout_marginTop="@dimen/snippet_margin"
+            android:layout_marginBottom="@dimen/snippet_margin"
             android:background="@drawable/search_input"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -25,9 +27,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/ivCompanyPic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
         </androidx.cardview.widget.CardView>
 
@@ -36,27 +38,39 @@
             style="@style/text_secondary_menu_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/snippet_padding"
-            android:layout_marginTop="@dimen/small_snippet_padding"
+            android:layout_marginStart="@dimen/snippet_margin"
+            android:layout_marginTop="@dimen/small_snippet_margin"
             android:text="Abrv"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="@+id/cardView" />
 
-        <TextView
-            android:id="@+id/rvCompany"
-            style="@style/text_subtitle_black"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:text="Company"
             app:layout_constraintStart_toStartOf="@+id/tvCompanyAbbreviation"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyAbbreviation" />
+            app:layout_constraintTop_toBottomOf="@+id/tvCompanyAbbreviation">
+
+            <TextView
+                android:id="@+id/tvCompany"
+                style="@style/text_subtitle_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:foregroundGravity="left"
+                android:gravity="start"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Company"
+                android:textIsSelectable="true" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tvShareCost"
             style="@style/text_secondary_menu_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/snippet_padding"
+            android:layout_marginEnd="@dimen/snippet_margin"
             android:text="$72.1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvCompanyAbbreviation" />
@@ -66,7 +80,17 @@
             style="@style/text_subtitle_green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+$ 0.12 (1.15%)"
+            android:layout_marginEnd="@dimen/small_snippet_margin"
+            android:text="+$0.12"
+            app:layout_constraintEnd_toStartOf="@+id/tvDifferencePercentage"
+            app:layout_constraintTop_toBottomOf="@+id/tvShareCost" />
+
+        <TextView
+            android:id="@+id/tvDifferencePercentage"
+            style="@style/text_subtitle_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(1.15%)"
             app:layout_constraintEnd_toEndOf="@+id/tvShareCost"
             app:layout_constraintTop_toBottomOf="@+id/tvShareCost" />
 

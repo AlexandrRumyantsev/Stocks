@@ -1,6 +1,6 @@
 <resources>
     <!-- MainContent Strings -->
-    <string name="app_name">CleanArchitectureShowcase</string>
+    <string name="app_name">StockApp</string>
     <string name="search_input_text">Find company or ticker</string>
     <string name="stocks">Stocks</string>
     <string name="favorite">Favorite</string>

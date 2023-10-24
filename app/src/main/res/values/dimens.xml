@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_corner_radius">16dp</dimen>
     <dimen name="search_input_radius">24dp</dimen>
-    <dimen name="snippet_padding">8dp</dimen>
-    <dimen name="small_snippet_padding">4dp</dimen>
-    <dimen name="main_content_padding">16dp</dimen>
+    <dimen name="snippet_margin">8dp</dimen>
+    <dimen name="small_snippet_margin">4dp</dimen>
+    <dimen name="main_content_margin">16dp</dimen>
 </resources>

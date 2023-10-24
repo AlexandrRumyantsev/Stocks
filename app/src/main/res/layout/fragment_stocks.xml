@@ -7,10 +7,16 @@
     tools:context=".features.home.presentation.StocksFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvStocks"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
+        android:id="@+id/progressBar"
         layout="@layout/loading_panel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

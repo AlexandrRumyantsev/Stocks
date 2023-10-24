@@ -6,7 +6,11 @@ class DataRepositoryImpl(
     private val api: ServerDataApi
 ): DataRepository {
 
-    override suspend fun getData(symbol: String): StockDTO {
-        return api.getStockDTO(symbol)
+    override suspend fun getStockInfo(symbol: String): List<StockInfoModel> {
+        return api.getStockInfo(symbol)
     }
+    override suspend fun getStocksList(): List<StockModel> {
+        return api.getStocksList()
+    }
+
 }

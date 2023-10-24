@@ -10,9 +10,9 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/main_content_padding"
-        android:layout_marginTop="@dimen/main_content_padding"
-        android:layout_marginEnd="@dimen/main_content_padding"
+        android:layout_marginStart="@dimen/main_content_margin"
+        android:layout_marginTop="@dimen/main_content_margin"
+        android:layout_marginEnd="@dimen/main_content_margin"
         android:background="@drawable/search_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/tabLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/main_content_padding"
+        android:layout_marginTop="@dimen/main_content_margin"
         android:background="@null"
         android:contextClickable="false"
         app:layout_constraintStart_toStartOf="@+id/searchView"
@@ -34,8 +34,10 @@
         app:tabIndicatorAnimationDuration="200"
         app:tabIndicatorAnimationMode="linear"
         app:tabIndicatorFullWidth="false"
+        app:tabIndicatorGravity="center"
         app:tabIndicatorHeight="0dp"
         app:tabMode="auto"
+        app:tabSelectedTextAppearance="@style/text_primary_menu_gray"
         app:tabSelectedTextColor="@color/text_black"
         app:tabTextAppearance="@style/text_primary_menu_black"
         app:tabTextColor="@color/text_gray"
@@ -44,7 +46,6 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
             android:text="@string/stocks" />
 
         <com.google.android.material.tabs.TabItem

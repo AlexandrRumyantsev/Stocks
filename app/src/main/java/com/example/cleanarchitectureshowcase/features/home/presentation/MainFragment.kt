@@ -10,7 +10,9 @@ import androidx.fragment.app.FragmentActivity
 import com.example.cleanarchitectureshowcase.R
 import com.example.cleanarchitectureshowcase.databinding.FragmentMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private val fList = listOf(
@@ -24,7 +26,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }

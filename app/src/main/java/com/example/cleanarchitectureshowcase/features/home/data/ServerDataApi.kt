@@ -5,17 +5,17 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ServerDataApi {
-    @GET("financial-statement-symbol-lists")
+    @GET("available-traded/list")
     suspend fun getStocksList(
         @Query("apikey") apikey: String = API_KEY
-    ): List<String>
+    ): List<StockModel>
     @GET("profile/{company}")
-    suspend fun getStockDTO(
+    suspend fun getStockInfo(
         @Path("company") company: String,
         @Query("apikey") apikey: String = API_KEY
-    ): StockDTO
+    ): List<StockInfoModel>
     companion object{
-        const val API_KEY = "43ea0c65b8688f853928dee8bee20e8d"
+        const val API_KEY = "LdCysPVv86Ky2fFecn5iBYUBCucrvfz8"
         const val BASE_URL = "https://financialmodelingprep.com/api/v3/"
     }
 }
