@@ -15,23 +15,34 @@ class GetStocksInfoUseCase @Inject constructor(
 ): CoroutinesUseCase<String, List<SnippetData>> {
 
     override suspend fun invoke(params: String): List<SnippetData> = withContext(Dispatchers.IO){
+
         var domainDataItem: DataDomain
 
-        val firstTenStocks = async {
-            repository.getStocksList().filter { it.exchangeShortName == DEFAULT_EXCHANGE }
+        val stocks = async {
+            repository.getStocksList()
+                .filter { it.exchangeShortName == DEFAULT_EXCHANGE }
                 .shuffled()
-        }.await().subList(0,10)
-        val firstTenStocksAsString =
-            firstTenStocks.map { it.symbol }.reduceOrNull { acc, value -> "$acc,$value" }
-        if (firstTenStocksAsString.isNullOrEmpty()) {
+        }.await()
+
+        val limitedStocks =
+            if (stocks.size > REQUEST_LIMIT) stocks.subList(0, REQUEST_LIMIT)
+            else stocks
+
+        val stockSymbols =
+            limitedStocks
+                .map { it.toDomain() }
+                .reduceOrNull { acc, value -> "$acc,$value" }
+
+        if (stockSymbols.isNullOrEmpty()) {
             return@withContext emptyList<SnippetData>()
         }
 
         val stockInfoList = async{
-            repository.getStockInfo(firstTenStocksAsString)
+            repository.getStockInfo(stockSymbols)
         }.await()
 
         val result = mutableListOf<SnippetData>()
+
         for (item in stockInfoList){
             domainDataItem = item.toDomain()
             businessLogicHelper.doWork(domainDataItem)
@@ -41,5 +52,6 @@ class GetStocksInfoUseCase @Inject constructor(
     }
     companion object {
         const val DEFAULT_EXCHANGE = "NASDAQ"
+        const val REQUEST_LIMIT = 10
     }
 }

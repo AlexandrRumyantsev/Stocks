@@ -21,6 +21,7 @@ class StocksFragment : Fragment() {
 
     private lateinit var binding: FragmentStocksBinding
     private lateinit var adapter: StocksAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,17 +44,21 @@ class StocksFragment : Fragment() {
             }
         }
     }
+
     private fun initRvStocks() = with(binding){
         rvStocks.layoutManager = LinearLayoutManager(activity)
         adapter = StocksAdapter()
         rvStocks.adapter = adapter
     }
+
     private fun showProgressBar(progressBar: ProgressBar){
         progressBar.visibility = View.VISIBLE
     }
+
     private fun hideProgressBar(progressBar: ProgressBar){
         progressBar.visibility = View.GONE
     }
+
     companion object {
         @JvmStatic
         fun newInstance() = StocksFragment()

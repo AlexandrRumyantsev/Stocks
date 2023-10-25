@@ -16,13 +16,14 @@ import kotlin.math.abs
 class StocksAdapter : ListAdapter<SnippetData, StocksAdapter.StockHolder>(Comparator()){
     class StockHolder(view: View) : RecyclerView.ViewHolder(view){
         private val binding = SnippetBinding.bind(view)
+
         fun bind(stockItem: SnippetData, position: Int) = with(binding){
             val cardColor =
                 if (position%2 == 0) R.color.card_bg else R.color.white
-            val isGrow: Boolean = stockItem.difference > 0
+            val hasPriceIncreased: Boolean = stockItem.difference > 0
             tvCompanyAbbreviation.text = stockItem.abbreviation
             tvCompany.text = stockItem.company
-            tvShareCost.text = stockItem.shareCost.toString()
+            tvShareCost.text = "$".plus(stockItem.shareCost.toString())
             tvDifference.text =
                 "$"
                 .plus(abs(stockItem.difference))
@@ -30,8 +31,7 @@ class StocksAdapter : ListAdapter<SnippetData, StocksAdapter.StockHolder>(Compar
                 "("
                 .plus(String.format("%.4f", abs(stockItem.differencePercentage)))
                 .plus("%)")
-
-            if(isGrow){
+            if(hasPriceIncreased){
                 tvDifferencePercentage.setTextAppearance(R.style.text_subtitle_green)
                 tvDifference.setTextAppearance(R.style.text_subtitle_green)
                 tvDifference.text = "+".plus(tvDifference.text)
@@ -49,14 +49,15 @@ class StocksAdapter : ListAdapter<SnippetData, StocksAdapter.StockHolder>(Compar
             root.setCardBackgroundColor(ContextCompat.getColor(itemView.context, cardColor))
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.snippet, parent, false)
         return StockHolder(view)
     }
-
     override fun onBindViewHolder(holder: StockHolder, position: Int) {
         holder.bind(getItem(position), position)
     }
+
     class Comparator: DiffUtil.ItemCallback<SnippetData>(){
         override fun areItemsTheSame(oldItem: SnippetData, newItem: SnippetData): Boolean {
             return oldItem == newItem

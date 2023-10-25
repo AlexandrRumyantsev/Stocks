@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
+
     private val fList = listOf(
         StocksFragment.newInstance(),
         FavoriteFragment.newInstance()
@@ -23,6 +24,7 @@ class MainFragment : Fragment() {
         "Stocks",
         "Favorite"
     )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +37,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
     }
+
     private fun init() = with(binding) {
         val adapter = VpAdapter(activity as AppCompatActivity, fList)
         vp.adapter = adapter
@@ -42,6 +45,7 @@ class MainFragment : Fragment() {
             tab, pos -> tab.text = tList[pos]
         }.attach()
     }
+
     companion object {
         @JvmStatic
         fun newInstance() = MainFragment()
