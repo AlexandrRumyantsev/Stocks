@@ -14,25 +14,12 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    val viewModel: MainViewModel by viewModels()
-
-    private lateinit var textView: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        textView = findViewById(R.id.some_title_textview)
-
-        lifecycleScope.launch {
-            viewModel.someProccess()
-            viewModel.state.collectLatest {data ->
-                setText(data.toString())
-            }
-        }
-    }
-
-    fun setText(longString: String) {
-        textView.text = longString
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.placeHolder, MainFragment.newInstance())
+            .commit()
     }
 }

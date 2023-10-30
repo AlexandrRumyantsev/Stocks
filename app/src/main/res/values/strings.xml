@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">CleanArchitectureShowcase</string>
+    <!-- MainContent Strings -->
+    <string name="app_name">StockApp</string>
     <string name="search_input_text">Find company or ticker</string>
+    <string name="stocks">Stocks</string>
+    <string name="favorite">Favorite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
