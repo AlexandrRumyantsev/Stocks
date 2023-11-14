@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".features.home.presentation.MainFragment">
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,13 +14,13 @@
         android:layout_marginTop="@dimen/main_content_margin"
         android:layout_marginEnd="@dimen/main_content_margin"
         android:background="@drawable/search_input"
-        android:iconifiedByDefault="false"
-        android:queryHint="@string/search_input_text"
-        android:saveEnabled="false"
-        android:searchIcon="@drawable/baseline_search_24"
+        android:visibility="visible"
+        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="@string/search_input_text"
+        app:searchIcon="@drawable/baseline_search_24" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -29,7 +29,7 @@
         android:layout_marginTop="@dimen/main_content_margin"
         android:background="@null"
         android:contextClickable="false"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/searchView"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
         app:tabGravity="start"
@@ -61,7 +61,7 @@
         android:id="@+id/vp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/searchView"
         app:layout_constraintStart_toStartOf="@+id/searchView"
@@ -88,6 +88,25 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/searchView"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <com.example.cleanarchitectureshowcase.features.home.presentation.CustomSearchViewGroup
+        android:id="@+id/cvSearchPopular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_content_margin2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:titleText="@string/popular_requests" />
+    <com.example.cleanarchitectureshowcase.features.home.presentation.CustomSearchViewGroup
+        android:id="@+id/cvSearchRecent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_content_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cvSearchPopular"
+        app:layout_constraintTop_toBottomOf="@+id/cvSearchPopular"
+        app:titleText="@string/you_have_searched" />
 
     <View
         android:id="@+id/divider"

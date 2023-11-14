@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.cleanarchitectureshowcase.R
 import com.example.cleanarchitectureshowcase.databinding.FragmentStocksBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -20,7 +19,7 @@ class StocksFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels()
 
     private lateinit var binding: FragmentStocksBinding
-    private lateinit var adapter: StocksAdapter
+    private lateinit var stocksAdapter: StocksAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,23 +31,27 @@ class StocksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showProgressBar(binding.progressBar.progressBar)
         initRvStocks()
+        setupSubscriptions()
+        viewModel.getStocksData()
+    }
+
+    private fun initRvStocks() = with(binding){
+        showProgressBar(binding.progressBar.progressBar)
+        rvStocks.layoutManager = LinearLayoutManager(activity)
+        stocksAdapter = StocksAdapter()
+        rvStocks.adapter = stocksAdapter
+    }
+
+    private fun setupSubscriptions(){
         lifecycleScope.launch {
-            viewModel.getStocksData()
-            viewModel.stocksState.collectLatest {
+            viewModel.stocksState.collect {
                 it?.let{
-                    adapter.submitList(it)
+                    stocksAdapter.submitList(it)
                     hideProgressBar(binding.progressBar.progressBar)
                 }
             }
         }
-    }
-
-    private fun initRvStocks() = with(binding){
-        rvStocks.layoutManager = LinearLayoutManager(activity)
-        adapter = StocksAdapter()
-        rvStocks.adapter = adapter
     }
 
     private fun showProgressBar(progressBar: ProgressBar){

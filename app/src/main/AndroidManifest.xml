@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".CleanApp"
         android:allowBackup="true"
@@ -14,6 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CleanArchitectureShowcase"
         tools:targetApi="33">
+        <service
+            android:name=".features.home.domain.UserSearchHistoryService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".features.home.presentation.MainActivity"
             android:exported="true">
@@ -23,6 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

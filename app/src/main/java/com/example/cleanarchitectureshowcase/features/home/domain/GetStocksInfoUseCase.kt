@@ -16,10 +16,7 @@ class GetStocksInfoUseCase @Inject constructor(
     private val calculatingHelper: CalculatingHelper
 ): CoroutinesUseCase<String, List<SnippetData>> {
 
-    override suspend fun invoke(params: String): List<SnippetData> = withContext(Dispatchers.IO){
-
-        var domainDataItem: DataDomain
-        val result = mutableListOf<SnippetData>()
+    override suspend fun invoke(params: String): List<SnippetData> = withContext(Dispatchers.IO) {
 
         val stocks = async {
             repository.getStocksList()
@@ -39,10 +36,9 @@ class GetStocksInfoUseCase @Inject constructor(
                     }
         }.awaitAll()
 
-        for (item in stockInfoList){
-            domainDataItem = item[0].toDomain()
-            val percentage = calculatingHelper.calculatePercent(domainDataItem)
-            result.add(domainDataItem.toUI(percentage))
+        val result = stockInfoList.map{
+            val dataDomainItem = it[0].toDomain()
+            dataDomainItem.toUI(percentage = calculatingHelper.calculatePercent(dataDomainItem))
         }
         return@withContext result
     }

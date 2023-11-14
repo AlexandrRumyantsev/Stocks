@@ -5,6 +5,19 @@
     <string name="stocks">Stocks</string>
     <string name="show_more">Show more</string>
     <string name="favorite">Favorite</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="you_have_searched">You\'ve searched for this</string>
+    <string name="popular_requests">Popular requests</string>
+    <string name="someText">Some text</string>
+    <!-- Favorite requests -->
+    <string-array name="popular_requests">
+        <item>Apple</item>
+        <item>Amazon</item>
+        <item>Google</item>
+        <item>Tesla</item>
+        <item>Microsoft</item>
+        <item>First Solar</item>
+        <item>Alibaba</item>
+        <item>Facebook</item>
+        <item>Mastercard</item>
+    </string-array>
 </resources>

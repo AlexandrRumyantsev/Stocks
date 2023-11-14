@@ -5,6 +5,7 @@ import com.example.cleanarchitectureshowcase.features.home.data.ServerDataApi
 import com.example.cleanarchitectureshowcase.features.home.domain.CalculatingHelper
 import com.example.cleanarchitectureshowcase.features.home.domain.CalculatingHelperImpl
 import com.example.cleanarchitectureshowcase.features.home.domain.DataRepository
+import com.example.cleanarchitectureshowcase.features.home.domain.UserSearchHistory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,5 +38,10 @@ object AppModule {
     @Singleton
     fun provideCalculatingObject(): CalculatingHelper {
         return CalculatingHelperImpl()
+    }
+    @Provides
+    @Singleton
+    fun provideUserSearchHistory(): UserSearchHistory{
+        return UserSearchHistory()
     }
 }
