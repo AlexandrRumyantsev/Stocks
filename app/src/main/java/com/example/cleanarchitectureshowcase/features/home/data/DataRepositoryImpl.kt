@@ -13,4 +13,11 @@ class DataRepositoryImpl(
         return api.getStocksList()
     }
 
+    override suspend fun getStocksBySearch(
+        symbol: String,
+        limit: Int,
+        exchange: String
+    ): List<SearchStockModel> {
+        return api.getStocksBySearch(symbol,limit,exchange)
+    }
 }

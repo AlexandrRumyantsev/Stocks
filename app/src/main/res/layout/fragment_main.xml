@@ -14,11 +14,13 @@
         android:layout_marginTop="@dimen/main_content_margin"
         android:layout_marginEnd="@dimen/main_content_margin"
         android:background="@drawable/search_input"
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/search_input_text"
+        android:saveEnabled="false"
+        android:searchIcon="@drawable/baseline_search_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:queryHint="@string/search_input_text"
-        android:iconifiedByDefault="false" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -27,6 +29,7 @@
         android:layout_marginTop="@dimen/main_content_margin"
         android:background="@null"
         android:contextClickable="false"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/searchView"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
         app:tabGravity="start"
@@ -58,9 +61,55 @@
         android:id="@+id/vp"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/searchView"
         app:layout_constraintStart_toStartOf="@+id/searchView"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <TextView
+        android:id="@+id/tvStocks"
+        style="@style/text_secondary_menu_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_content_margin2"
+        android:text="@string/stocks"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <TextView
+        android:id="@+id/tvShowMore"
+        style="@style/text_subtitle_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_content_margin2"
+        android:text="@string/show_more"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/main_content_margin"
+        android:background="?android:attr/listDivider"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSearching"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/main_content_margin"
+        android:layout_marginTop="@dimen/main_content_margin"
+        android:layout_marginEnd="@dimen/main_content_margin"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStocks" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

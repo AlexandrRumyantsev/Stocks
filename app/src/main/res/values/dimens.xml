@@ -5,4 +5,5 @@
     <dimen name="snippet_margin">8dp</dimen>
     <dimen name="small_snippet_margin">4dp</dimen>
     <dimen name="main_content_margin">16dp</dimen>
+    <dimen name="main_content_margin2">32dp</dimen>
 </resources>

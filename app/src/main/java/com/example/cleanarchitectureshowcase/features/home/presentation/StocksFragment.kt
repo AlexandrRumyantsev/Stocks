@@ -36,7 +36,7 @@ class StocksFragment : Fragment() {
         initRvStocks()
         lifecycleScope.launch {
             viewModel.getStocksData()
-            viewModel.state.collectLatest {
+            viewModel.stocksState.collectLatest {
                 it?.let{
                     adapter.submitList(it)
                     hideProgressBar(binding.progressBar.progressBar)

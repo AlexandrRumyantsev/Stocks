@@ -9,7 +9,7 @@ data class DataDomain(
     val changes: Double,
     val image: String,
 ) {
-    fun toUI() : SnippetData{
-        return SnippetData(symbol, companyName, price, changes, changes/(price-changes), image)
+    fun toUI(percentage: Double) : SnippetData{
+        return SnippetData(symbol, companyName, price, changes, percentage, image)
     }
 }
