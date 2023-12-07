@@ -1,8 +1,9 @@
 package com.example.cleanarchitectureshowcase.features.home.domain
 
+import dagger.Provides
 import javax.inject.Inject
 
-class UserSearchHistory @Inject constructor() {
+class UserSearchHistory {
 
     private val searchHistory = arrayListOf<String>()
     fun addToHistory(query: String): Boolean{

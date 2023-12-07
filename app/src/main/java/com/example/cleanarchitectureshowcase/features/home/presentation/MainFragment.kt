@@ -124,6 +124,9 @@ class MainFragment : Fragment() {
         searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
             viewModel.updateSearchingStatus(hasFocus)
         }
+        tvShowMore.setOnClickListener {
+            viewModel.showMoreStocks(binding.searchView.query.toString())
+        }
         root.setOnClickListener {
             binding.searchView.clearFocus()
         }

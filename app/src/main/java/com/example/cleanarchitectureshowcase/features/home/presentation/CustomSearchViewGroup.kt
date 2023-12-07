@@ -20,7 +20,7 @@ class CustomSearchViewGroup @JvmOverloads constructor(
 ) : ConstraintLayout(context,attrs, defStyleAttr, desStyleRes) {
 
     private val binding: SearchHintBinding
-    private var layoutManager = StaggeredGridLayoutManager(2, RecyclerView.HORIZONTAL)
+    private var layoutManager = FlexboxLayoutManager(context)
     private var adapter = RecentSearchAdapter()
 
     init {

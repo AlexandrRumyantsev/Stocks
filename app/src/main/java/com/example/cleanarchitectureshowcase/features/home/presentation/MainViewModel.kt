@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cleanarchitectureshowcase.features.home.domain.GetStocksBySearchUseCase
 import com.example.cleanarchitectureshowcase.features.home.domain.GetStocksInfoUseCase
+import com.example.cleanarchitectureshowcase.features.home.domain.ShowMoreUseCase
 import com.example.cleanarchitectureshowcase.features.home.domain.UserSearchHistory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getStocksInfoUseCase: GetStocksInfoUseCase,
     private val searchStocksUseCase: GetStocksBySearchUseCase,
+    private val showMoreUseCase: ShowMoreUseCase,
     private val searchHistory: UserSearchHistory
 ): ViewModel() {
 
@@ -30,6 +32,14 @@ class MainViewModel @Inject constructor(
     fun getStocksData() {
         viewModelScope.launch {
             stocksState.value = getStocksInfoUseCase.invoke("")
+        }
+    }
+
+    fun showMoreStocks(query: String?){
+        viewModelScope.launch{
+            query?.let{
+                searchState.value = showMoreUseCase.invoke(it)
+            }
         }
     }
 

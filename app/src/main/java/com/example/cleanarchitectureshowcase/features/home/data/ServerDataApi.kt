@@ -15,12 +15,18 @@ interface ServerDataApi {
         @Query("apikey") apikey: String = API_KEY
     ): List<StockInfoModel>
     @GET("search")
-    suspend fun getStocksBySearch(
+    suspend fun getStocksBySearchWithLimit(
         @Query("query") query: String,
-        @Query("limit") limit: Int,
+        @Query("limit") limit: String,
         @Query("exchange") exchange: String,
         @Query("apikey") apikey: String = API_KEY
     ): List<SearchStockModel>
+    @GET("search")
+    suspend fun getStocksBySearch(
+        @Query("query") query: String,
+        @Query("exchange") exchange: String,
+        @Query("apikey") apikey: String = API_KEY
+    ) : List<SearchStockModel>
     companion object{
         const val API_KEY = "wzLV0lyEjzEn9nW0toumKpINWChzRokR"
         const val BASE_URL = "https://financialmodelingprep.com/api/v3/"
