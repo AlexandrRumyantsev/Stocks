@@ -1,6 +1,8 @@
 package com.example.cleanarchitectureshowcase.features.home.presentation
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cleanarchitectureshowcase.R
 import com.example.cleanarchitectureshowcase.databinding.FragmentMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
@@ -54,8 +58,14 @@ class MainFragment : Fragment() {
     }
 
     private fun initRvSearching() = with(binding){
+        val listener = object: StocksAdapter.StockItemClickListener{
+            override fun onItemCLick(item: SnippetData) {
+                viewModel.addToHistory(item.abbreviation)
+                saveSearchHistory()
+            }
+        }
         rvSearching.layoutManager = LinearLayoutManager(activity)
-        stocksAdapter = StocksAdapter()
+        stocksAdapter = StocksAdapter(listener)
         rvSearching.adapter = stocksAdapter
     }
 
@@ -69,6 +79,7 @@ class MainFragment : Fragment() {
         cvSearchPopular.setAdapter(searchAdapter)
         cvSearchRecent.setAdapter(searchAdapter)
         fillPopularRequests()
+        loadSearchHistory()
     }
 
     private fun setupSubscriptions() = with(binding){
@@ -127,12 +138,16 @@ class MainFragment : Fragment() {
         tvShowMore.setOnClickListener {
             viewModel.showMoreStocks(binding.searchView.query.toString())
         }
+        tvClearSearch.setOnClickListener {
+            viewModel.clearSearchHistory()
+            saveSearchHistory()
+        }
         root.setOnClickListener {
             binding.searchView.clearFocus()
         }
     }
 
-    private fun showStartSearchingInterface() = with(binding){
+    private fun showStartSearchingInterface() = with(binding) {
         tabLayout.visibility = View.GONE
         vp.visibility = View.GONE
         divider.visibility = View.GONE
@@ -141,8 +156,9 @@ class MainFragment : Fragment() {
         rvSearching.visibility = View.GONE
         cvSearchPopular.visibility = View.VISIBLE
         cvSearchRecent.visibility = View.VISIBLE
+        tvClearSearch.visibility = View.VISIBLE
     }
-    private fun showSearchingInterface() = with(binding){
+    private fun showSearchingInterface() = with(binding) {
         tabLayout.visibility = View.GONE
         vp.visibility = View.GONE
         divider.visibility = View.VISIBLE
@@ -151,8 +167,9 @@ class MainFragment : Fragment() {
         rvSearching.visibility = View.VISIBLE
         cvSearchPopular.visibility = View.GONE
         cvSearchRecent.visibility = View.GONE
+        tvClearSearch.visibility = View.GONE
     }
-    private fun showAllStocksInterface() = with(binding){
+    private fun showAllStocksInterface() = with(binding) {
         tabLayout.visibility = View.VISIBLE
         vp.visibility = View.VISIBLE
         divider.visibility = View.GONE
@@ -161,6 +178,33 @@ class MainFragment : Fragment() {
         rvSearching.visibility = View.GONE
         cvSearchPopular.visibility = View.GONE
         cvSearchRecent.visibility = View.GONE
+        tvClearSearch.visibility = View.GONE
+    }
+    private fun saveSearchHistory() {
+        val sPref = activity?.getSharedPreferences(getString(R.string.shared_preferences), Context.MODE_PRIVATE)
+        val editor = sPref?.edit()
+        val gson = Gson()
+        val json = gson.toJson(viewModel.getSearchHistory())
+        editor?.putString(getString(R.string.history), json)
+        editor?.apply()
+    }
+    private fun loadSearchHistory() {
+        val sPref = activity?.getSharedPreferences(getString(R.string.shared_preferences), Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = sPref?.getString(getString(R.string.history), null)
+        val type = object : TypeToken<ArrayList<String>>(){}.type
+        json?.let {
+            val history: ArrayList<String> = gson.fromJson(it, type)
+            binding.cvSearchRecent.submitList(history)
+            history.map { item ->
+                viewModel.addToHistory(item)
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        saveSearchHistory()
     }
     companion object {
         @JvmStatic
