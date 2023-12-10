@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/searchItem"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/small_snippet_margin"
+    android:layout_marginEnd="@dimen/small_snippet_margin"
+    android:layout_marginBottom="@dimen/small_snippet_margin"
+    android:background="#FEFAFD"
+    app:cardBackgroundColor="#FEFAFD"
+    app:cardElevation="0dp">
+
+    <TextView
+        android:id="@+id/tvSearchItem"
+        style="@style/text_subtitle_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_item_shape"
+        android:padding="@dimen/search_item_padding"
+        android:text="SearchItem" />
+</androidx.cardview.widget.CardView>
