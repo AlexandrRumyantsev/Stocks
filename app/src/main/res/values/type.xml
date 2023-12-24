@@ -24,6 +24,12 @@
         <item name="android:textColor">@color/text_gray</item>
         <item name="android:lineSpacingExtra">6sp</item>
     </style>
+    <style name="text_subtitle_gray">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
     <style name="text_subtitle_black">
         <item name="android:textSize">12sp</item>
         <item name="fontFamily">@font/montserrat_semibold</item>

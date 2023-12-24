@@ -12,11 +12,12 @@ import com.example.cleanarchitectureshowcase.R
 import com.example.cleanarchitectureshowcase.databinding.SnippetBinding
 import kotlin.math.abs
 
-class StocksAdapter : ListAdapter<SnippetData, StocksAdapter.StockHolder>(Comparator()){
+class StocksAdapter(private var listener: StockItemClickListener? = null) : ListAdapter<SnippetData, StocksAdapter.StockHolder>(Comparator()){
+
     class StockHolder(view: View) : RecyclerView.ViewHolder(view){
         private val binding = SnippetBinding.bind(view)
 
-        fun bind(stockItem: SnippetData, position: Int) = with(binding){
+        fun bind(stockItem: SnippetData, position: Int, listener: StockItemClickListener?) = with(binding){
             val cardColor =
                 if (position%2 == 0) R.color.card_bg else R.color.white
             val hasPriceIncreased: Boolean = stockItem.difference > 0
@@ -46,6 +47,9 @@ class StocksAdapter : ListAdapter<SnippetData, StocksAdapter.StockHolder>(Compar
                 .placeholder(R.color.white)
                 .into(ivCompanyPic)
             root.setCardBackgroundColor(ContextCompat.getColor(itemView.context, cardColor))
+            itemView.setOnClickListener{
+                listener?.onItemCLick(stockItem)
+            }
         }
     }
 
@@ -54,7 +58,11 @@ class StocksAdapter : ListAdapter<SnippetData, StocksAdapter.StockHolder>(Compar
         return StockHolder(view)
     }
     override fun onBindViewHolder(holder: StockHolder, position: Int) {
-        holder.bind(getItem(position), position)
+        holder.bind(getItem(position), position, listener)
+    }
+
+    interface StockItemClickListener{
+        fun onItemCLick(item: SnippetData)
     }
 
     class Comparator: DiffUtil.ItemCallback<SnippetData>(){

@@ -131,4 +131,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvStocks" />
 
+    <TextView
+        android:id="@+id/tvClearSearch"
+        style="@style/text_subtitle_gray"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_content_margin"
+        android:layout_marginEnd="@dimen/main_content_margin"
+        android:gravity="end"
+        android:text="@string/clearHistory"
+        app:layout_constraintEnd_toEndOf="@+id/cvSearchRecent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvSearchRecent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,9 @@
     <string name="you_have_searched">You\'ve searched for this</string>
     <string name="popular_requests">Popular requests</string>
     <string name="someText">Some text</string>
+    <string name="clearHistory">Clear search history</string>
+    <string name="history">History</string>
+    <string name="shared_preferences">Shared preferences</string>
     <!-- Favorite requests -->
     <string-array name="popular_requests">
         <item>Apple</item>

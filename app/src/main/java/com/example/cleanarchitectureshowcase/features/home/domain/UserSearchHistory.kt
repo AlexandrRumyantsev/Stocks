@@ -15,6 +15,9 @@ class UserSearchHistory {
         searchHistory.add(query)
         return true
     }
+    fun clearSearchHistory(){
+        searchHistory.clear()
+    }
     fun getSearchHistory() : MutableList<String>{
         return searchHistory
     }

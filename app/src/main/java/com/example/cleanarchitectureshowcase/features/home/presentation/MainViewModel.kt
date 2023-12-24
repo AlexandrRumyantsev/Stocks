@@ -50,13 +50,18 @@ class MainViewModel @Inject constructor(
             delay(SEARCH_DEBOUNCE)
             query?.let {
                 searchState.value = searchStocksUseCase.invoke(it)
-                if(searchHistory.addToHistory(it)) {
-                    updateSearchHistoryState(it)
-                }
             }
         }
     }
-
+    fun addToHistory(searchItem: String) {
+        if(searchHistory.addToHistory(searchItem)) {
+            updateSearchHistoryState(searchItem)
+        }
+    }
+    fun clearSearchHistory() {
+        searchHistory.clearSearchHistory()
+        updateSearchHistoryState("")
+    }
     fun updateSearchingStatus(hasFocus: Boolean){
         if(hasFocus && isSearchingState.value != SEARCH_STARTED) isSearchingState.value = SEARCH_READY
         if(!hasFocus && isSearchingState.value == SEARCH_READY) isSearchingState.value = SEARCH_STOPPED
