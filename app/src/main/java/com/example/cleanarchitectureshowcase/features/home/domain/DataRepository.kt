@@ -9,6 +9,6 @@ interface DataRepository {
     suspend fun getStocksList(): List<StockModel>
     suspend fun getStocksBySearch(
         symbol: String,
-        limit: Int,
+        limit: Int?,
         exchange: String ): List<SearchStockModel>
 }

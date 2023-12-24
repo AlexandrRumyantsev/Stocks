@@ -15,9 +15,10 @@ class DataRepositoryImpl(
 
     override suspend fun getStocksBySearch(
         symbol: String,
-        limit: Int,
+        limit: Int?,
         exchange: String
     ): List<SearchStockModel> {
-        return api.getStocksBySearch(symbol,limit,exchange)
+        val limitToString = limit?.toString() ?: ""
+        return api.getStocksBySearchWithLimit(symbol,limitToString,exchange)
     }
 }
