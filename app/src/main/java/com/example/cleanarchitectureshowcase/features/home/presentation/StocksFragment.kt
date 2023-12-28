@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cleanarchitectureshowcase.databinding.FragmentStocksBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -41,6 +42,17 @@ class StocksFragment : Fragment() {
         rvStocks.layoutManager = LinearLayoutManager(activity)
         stocksAdapter = StocksAdapter()
         rvStocks.adapter = stocksAdapter
+        rvStocks.addOnScrollListener(
+            object : RecyclerView.OnScrollListener(){
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if(!recyclerView.canScrollVertically(1)) {
+                        showProgressBar(binding.progressBar.progressBar)
+                        viewModel.getStocksData()
+                    }
+                }
+            }
+        )
     }
 
     private fun setupSubscriptions(){
