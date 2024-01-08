@@ -28,7 +28,7 @@ interface ServerDataApi {
         @Query("apikey") apikey: String = API_KEY
     ) : List<SearchStockModel>
     companion object{
-        const val API_KEY = "18eeulime6K4FVO7QPU2RCcxVmTKh5Fh"
+        const val API_KEY = "VAi7W4fxJNZQTN45n2FVGtB5iaNFLNtj"
         const val BASE_URL = "https://financialmodelingprep.com/api/v3/"
     }
 }

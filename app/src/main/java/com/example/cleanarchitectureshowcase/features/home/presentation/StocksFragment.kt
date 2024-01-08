@@ -46,7 +46,7 @@ class StocksFragment : Fragment() {
             object : RecyclerView.OnScrollListener(){
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
-                    if(!recyclerView.canScrollVertically(1)) {
+                    if(binding.progressBar.progressBar.visibility == View.GONE && !recyclerView.canScrollVertically(1)) {
                         showProgressBar(binding.progressBar.progressBar)
                         viewModel.getStocksData()
                     }
@@ -57,7 +57,7 @@ class StocksFragment : Fragment() {
 
     private fun setupSubscriptions(){
         lifecycleScope.launch {
-            viewModel.stocksState.collect {
+            viewModel.stocksState.collectLatest {
                 it?.let{
                     stocksAdapter.submitList(it)
                     hideProgressBar(binding.progressBar.progressBar)
