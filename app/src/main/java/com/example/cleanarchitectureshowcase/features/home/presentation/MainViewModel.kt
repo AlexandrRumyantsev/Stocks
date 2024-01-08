@@ -31,7 +31,7 @@ class MainViewModel @Inject constructor(
 
     fun getStocksData() {
         viewModelScope.launch {
-            stocksState.value = getStocksInfoUseCase.invoke("")
+            stocksState.value = getStocksInfoUseCase.invoke(stocksState.value)
         }
     }
 
