@@ -142,6 +142,7 @@ class MainFragment : Fragment() {
             viewModel.clearSearchHistory()
             saveSearchHistory()
         }
+
         root.setOnClickListener {
             binding.searchView.clearFocus()
         }
